@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outils Windows - Optimisez votre système</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --primary-color: #007BFF;
-            --secondary-color: #6c757d;
+            --primary-color: #4285F4;
+            --secondary-color: #34A853;
+            --accent-color: #FBBC05;
             --background-color: #f8f9fa;
             --text-color: #333;
-            --hover-color: #0056b3;
+            --hover-color: #1A73E8;
         }
 
         * {
@@ -36,87 +38,257 @@
         }
 
         header {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 1rem 0;
+            padding: 4rem 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 80%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .features {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            margin-top: 2rem;
+            margin-top: 4rem;
         }
 
         .feature {
-            flex-basis: calc(25% - 1rem);
+            flex-basis: calc(25% - 2rem);
             background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .feature:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(45deg, rgba(66, 133, 244, 0.2) 0%, rgba(52, 168, 83, 0.2) 30%, rgba(251, 188, 5, 0.2) 60%, rgba(234, 67, 53, 0.2) 100%);
+            transition: all 0.5s ease;
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .feature:hover::before {
+            top: 100%;
+            left: 100%;
         }
 
         .feature i {
-            font-size: 2rem;
+            font-size: 3.5rem;
             color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover i {
+            transform: scale(1.1) rotate(10deg);
+            color: var(--secondary-color);
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .feature h3::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+            margin: 0.5rem auto 0;
+        }
+
+        .feature:hover h3::after {
+            width: 50px;
         }
 
         .download-section {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 5rem;
+            padding: 6rem 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .download-button {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--primary-color);
-            color: white;
+            padding: 1.5rem 3rem;
+            background: white;
+            color: var(--primary-color);
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            transition: background 0.3s ease;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .download-button:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .download-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
             background: var(--hover-color);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .download-button:hover::before {
+            width: 100%;
         }
 
         .version {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--secondary-color);
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         footer {
             text-align: center;
-            margin-top: 3rem;
-            padding: 1rem 0;
-            background: var(--secondary-color);
+            margin-top: 5rem;
+            padding: 3rem 0;
+            background: var(--text-color);
             color: white;
         }
 
-        @media (max-width: 768px) {
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--hover-color);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 992px) {
             .feature {
-                flex-basis: calc(50% - 1rem);
+                flex-basis: calc(50% - 2rem);
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
             .feature {
                 flex-basis: 100%;
+            }
+            .download-button {
+                font-size: 1.2rem;
+                padding: 1.2rem 2.5rem;
             }
         }
     </style>
@@ -124,36 +296,36 @@
 <body>
     <header>
         <div class="container">
-            <h1>Outils Windows</h1>
-            <p>Optimisez et personnalisez votre système Windows en quelques clics</p>
+            <h1 data-aos="fade-down">Outils Windows</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="300">Optimisez et personnalisez votre système Windows avec notre suite d'outils puissants et faciles à utiliser</p>
         </div>
     </header>
 
     <main class="container">
         <section class="features">
-            <div class="feature">
+            <div class="feature" data-aos="fade-up" data-aos-delay="100">
                 <i class="fas fa-key"></i>
                 <h3>Activation Windows</h3>
-                <p>Activez facilement votre système d'exploitation Windows</p>
+                <p>Activez facilement votre système d'exploitation Windows en quelques clics</p>
             </div>
-            <div class="feature">
+            <div class="feature" data-aos="fade-up" data-aos-delay="200">
                 <i class="fas fa-download"></i>
                 <h3>Téléchargement Office</h3>
-                <p>Obtenez la suite Microsoft Office rapidement</p>
+                <p>Obtenez la suite Microsoft Office rapidement et sans complications</p>
             </div>
-            <div class="feature">
+            <div class="feature" data-aos="fade-up" data-aos-delay="300">
                 <i class="fas fa-laptop"></i>
                 <h3>Spécifications PC</h3>
-                <p>Visualisez les caractéristiques de votre ordinateur</p>
+                <p>Visualisez en détail les caractéristiques de votre ordinateur</p>
             </div>
-            <div class="feature">
+            <div class="feature" data-aos="fade-up" data-aos-delay="400">
                 <i class="fas fa-tools"></i>
                 <h3>Installation Ninite</h3>
-                <p>Installez vos programmes préférés en un clic</p>
+                <p>Installez vos programmes préférés en un seul clic, sans tracas</p>
             </div>
         </section>
 
-        <section class="download-section">
+        <section class="download-section" data-aos="zoom-in">
             <a href="https://drive.proton.me/urls/X2PWV2MQV0#RzudQuztRLaV" class="download-button" download>
                 <i class="fas fa-download"></i> Télécharger Outils Windows
             </a>
@@ -166,5 +338,55 @@
             <p>&copy; 2024 Outils Windows. Tous droits réservés.</p>
         </div>
     </footer>
+
+    <div class="scroll-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 200
+        });
+
+        // Scroll to top functionality
+        const scrollToTop = document.querySelector('.scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                scrollToTop.classList.add('show');
+            } else {
+                scrollToTop.classList.remove('show');
+            }
+        });
+
+        scrollToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Parallax effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            let scrollPosition = window.pageYOffset;
+            header.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+        });
+
+        // Interactive feature cards
+        const features = document.querySelectorAll('.feature');
+        features.forEach(feature => {
+            feature.addEventListener('mousemove', (e) => {
+                const rect = feature.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                feature.style.setProperty('--mouse-x', `${x}px`);
+                feature.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
 </body>
 </html>
